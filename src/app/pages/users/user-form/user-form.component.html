@@ -1,1 +1,119 @@
-<p>user-form works!</p>
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <br>
+    <app-bread-crumb [items]="[{text: 'Usuários', link: '/users'}, {text: pageTitle}]"></app-bread-crumb>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-md">
+      <button routerLink="/users" class="btn btn-light pull-right">
+        << Voltar </button>
+          <h1 class="h2 border-left pl-2">{{pageTitle}}</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <form [formGroup]="resourceForm" (submit)="submitForm()">
+      <div class="panel panel-default">
+        <div class="panel-heading">Informações sobre o usuário</div>
+
+        <div class="panel-body">
+          <!-- LINHA 1 -->
+          <div class="form-row">
+
+            <!-- nome usuário -->
+            <div class="form-group col-md-4">
+              <label for="nome">Nome</label>
+              <input type="text" class="form-control" formControlName="nome" id="nome" />
+              <app-form-field-error [form-control]="resourceForm.get('nome')"></app-form-field-error>
+
+            </div>
+
+            <!-- E-mail -->
+            <div class="form-group col-md-4">
+              <label for="description">E-mail</label>
+              <input type="email" class="form-control" formControlName="email" id="email" />
+              <app-form-field-error [form-control]="resourceForm.get('email')"></app-form-field-error>
+            </div>
+
+            <!-- CPF -->
+            <div class="form-group col-md-4">
+              <label for="description">CPF</label>
+              <input type="text" class="form-control" id="cpf" formControlName="cpf" />
+              <app-form-field-error [form-control]="resourceForm.get('cpf')"></app-form-field-error>
+            </div>
+          </div>
+
+          <!-- LINHA 2 -->
+          <div class="form-row">
+            <!-- senha -->
+            <div class="form-group col-md-4">
+              <label for="senha">Senha</label>
+              <input type="password" class="form-control" formControlName="senha" id="senha" />
+              <app-form-field-error [form-control]="resourceForm.get('senha')"></app-form-field-error>
+            </div>
+
+            <!-- confirmação da senha -->
+            <div class="form-group col-md-4">
+              <label for="confirmacaoSenha">Repidta a Senha</label>
+              <input type="password" class="form-control" id="confirmacaoSenha" />
+            </div>
+
+            <!-- date -->
+            <div class="form-group col-md-4">
+              <label for="dataNascimento">Data Nascimento</label><br>
+              <p-calendar id="dataNascimento" formControlName="dataNascimento" inputStyleClass="form-control"
+                dateFormat="dd/mm/yy" [locale]="ptBR" [showButtonBar]="true"></p-calendar>
+              <app-form-field-error [form-control]="resourceForm.get('dataNascimento')"></app-form-field-error>
+            </div>
+          </div>
+
+          <!-- LINHA 3 -->
+          <div class="form-row">
+            <!-- perfil -->
+            <div class="form-group col-md-4">
+              <label for="perfilId">Perfil</label>
+              <select class="form-control" name="perfilId" id="perfilId" formControlName="perfilId">
+                <option *ngFor="let p of profiles" value="{{ p.id }}">{{ p.nome }}</option>
+              </select>
+              <app-form-field-error [form-control]="resourceForm.get('perfilId')"></app-form-field-error>
+            </div>
+
+            <!-- Login User -->
+            <div class="form-group col-md-3">
+              <label for="login">Login</label>
+              <input type="text" class="form-control" formControlName="login" id="login" />
+              <app-form-field-error [form-control]="resourceForm.get('login')"></app-form-field-error>
+            </div>
+
+            <!-- status usuário -->
+            <div class="form-group col-md-3">
+              <label for="paid">Status</label>
+              <div>
+                <label (click)="this.resourceForm.get('status').setValue(1)"
+                  [class.btn-success]="this.resourceForm.get('status').value === 1"
+                  class="btn btn-outline-info">Ativado</label>
+                <label (click)="this.resourceForm.get('status').setValue(0)"
+                  [class.btn-success]="this.resourceForm.get('status').value === 0"
+                  class="btn btn-outline-info">Desativado</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-danger mt-4" *ngIf="serverErrorMessages">
+        <strong>Erro no Servidor</strong>
+        <ul>
+          <li *ngFor="let err of serverErrorMessages">{{ err }}</li>
+        </ul>
+      </div>
+
+      <button [disabled]="submittingForm || resourceForm.invalid" type="submit"
+        class="btn btn-primary btn-lg pull-right">
+        Salvar
+      </button>
+    </form>
+  </div>
+</div>
