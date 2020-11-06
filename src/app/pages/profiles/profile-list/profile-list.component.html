@@ -41,11 +41,13 @@
               </div>
             </td>
             <td>
-              <a [routerLink]="[profile.id, 'edit']">
+              <a [routerLink]="[profile.id, 'edit']" style="margin-right: 5px;">
                 <button type='button' class='btn btn-outline btn-success'>
                   <i class='fa fa-edit'>
                   </i> Editar Perfil</button>
               </a>
+              <a class="btn btn-outline btn-danger" (click)="deleteResource(profile)">Excluir</a>
+
             </td>
           </tr>
         </tbody>

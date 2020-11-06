@@ -37,7 +37,7 @@
             <td> {{ permissao.url }} </td>
             <td>ROOT</td>
             <td>
-              <span class='label label-primary'>Ativado</span>
+              <span class='label label-danger'>Desativado</span>
             </td>
             <td>
               <a [routerLink]="[permissao.id, 'edit']" style="margin-right: 5px;">
@@ -45,9 +45,14 @@
                   <i class='fa fa-edit'>
                   </i> Editar Permissão</button>
               </a>
-              <button type='button' class='btn btn-outline btn-info'>
+              <button type='button' class='btn btn-outline btn-info' style="margin-right: 5px;">
                 <i class='fa fa-toggle-off'></i> Ativar
               </button>
+
+              <a class="btn btn-outline btn-danger" (click)="deleteResource(permissao)">
+                Excluir
+              </a>
+
             </td>
           </tr>
         </tbody>
