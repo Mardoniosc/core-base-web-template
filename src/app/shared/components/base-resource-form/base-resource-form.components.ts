@@ -12,7 +12,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel>
   currentAction: string;
   resourceForm: FormGroup;
   pageTitle: string;
-  serverErrorMessages: string[] = null;
+  serverErrorMessages: string[] = [];
   submittingForm: boolean = false;
 
   protected route: ActivatedRoute;
@@ -141,10 +141,21 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel>
   protected actionForError(err) {
     this.submittingForm = false;
 
-    if (err.status === 422) {
-      this.serverErrorMessages = JSON.parse(err._body).erros;
-    }
-    if (err.status === 504) {
+    if (err.status == 422) {
+      this.serverErrorMessages = [];
+      if (err.error.errors) {
+        err.error.errors.forEach((e) => {
+          this.serverErrorMessages.push(e.message);
+        });
+      } else {
+        let errors = JSON.parse(err.error);
+        errors.errors.forEach((e) => {
+          this.serverErrorMessages.push(e.message);
+        });
+        // this.serverErrorMessages.push(errors[0]['message']);
+      }
+      // this.serverErrorMessages = JSON.parse(err.error);
+    } else if (err.status === 504) {
       toastr.options.progressBar = true;
       toastr.error('Erro de comunicação com o servidor');
       this.serverErrorMessages = ['Erro 504 - Gateway Timeout'];

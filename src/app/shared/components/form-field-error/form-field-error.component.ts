@@ -8,7 +8,7 @@ import { FormControl } from '@angular/forms';
       {{ errorMensage }}
     </p>
   `,
-  styleUrls: ['./form-field-error.component.css']
+  styleUrls: ['./form-field-error.component.css'],
 })
 export class FormFieldErrorComponent implements OnInit {
   @Input('form-control') formControl: FormControl;

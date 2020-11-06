@@ -72,7 +72,6 @@ export class ProfileListComponent
     } else {
       status = 'ativar';
     }
-    console.log(this.perfilPermi);
     this.perfilPermi.status = status === 'ativar' ? 1 : 0;
     this.ppService.update(this.perfilPermi).subscribe(
       (data) => {
