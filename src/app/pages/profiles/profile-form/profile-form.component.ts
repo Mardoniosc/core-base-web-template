@@ -28,7 +28,7 @@ export class ProfileFormComponent extends BaseResourceFormComponent<Profile> {
   }
 
   protected editionPageTitle(): string {
-    const categoryName = this.resource.nome || '';
-    return 'Editando Perfil: ' + categoryName;
+    const profileName = this.resource.nome || '';
+    return 'Editando Perfil: ' + profileName;
   }
 }

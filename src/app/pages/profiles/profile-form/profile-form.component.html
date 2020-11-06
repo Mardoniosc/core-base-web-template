@@ -1,1 +1,44 @@
-<p>profile-form works!</p>
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <br>
+    <app-bread-crumb [items]="[{text: 'Perfils', link: '/profiles'}, {text: pageTitle}]"></app-bread-crumb>
+  </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+    <div class="col-md">
+      <button routerLink="/profiles" class="btn btn-light pull-right">
+        << Voltar </button>
+          <h1 class="h2 border-left pl-2">{{pageTitle}}</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <form role="form" [formGroup]="resourceForm" (submit)="submitForm()">
+      <div class="panel panel-default">
+        <div class="panel-heading">Informações sobre o Perfil</div>
+        <div class="panel-body">
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="nome">Nome</label>
+              <input type="text" class="form-control" formControlName="nome" id="nome" />
+              <app-form-field-error [form-control]="resourceForm.get('nome')"></app-form-field-error>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert alert-danger mt-4" *ngIf="serverErrorMessages">
+        <strong>Erro no Servidor</strong>
+        <ul>
+          <li *ngFor="let err of serverErrorMessages">{{ err }}</li>
+        </ul>
+      </div>
+
+      <button [disabled]="submittingForm || resourceForm.invalid" type="submit"
+        class="btn btn-primary btn-lg pull-right">
+        Salvar
+      </button>
+    </form>
+  </div>
+</div>
