@@ -8,6 +8,7 @@
   <div class="row">
     <div class="col-md">
       <a routerLink="new" class="btn btn-success pull-right" style="margin: 10px;">+ Nova permissão</a>
+      <a routerLink="associate" class="btn btn-primary pull-right" style="margin: 10px;">+ Associar Permissão</a>
       <h1 class="h2 border-left pl-2">Permissões</h1>
     </div>
   </div>
@@ -25,7 +26,26 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let permissao of resources">
+
+        <tbody>
+          <tr *ngFor="let pp of perfilPermissao">
+            <td>{{ permissaDescricao(pp.permissaoId) }}</td>
+            <td>{{ permissaoUrl(pp.permissaoId) }}</td>
+            <td>{{perfiNome(pp.perfilId)}}</td>
+            <td>
+              <span
+                class='label label-{{ pp.status === 1 ? "primary" : "default" }}'>{{ pp.status === 1 ? 'Ativado' : 'Desativado' }}</span>
+            </td>
+            <td>
+              <button type='button' (click)="alterStatusPP(pp)"
+                class='btn btn-outline btn-{{ pp.status === 1 ? "danger" : "info" }}'>
+                <i class='fa fa-toggle-off'></i> {{ pp.status === 1 ? "Desativar" : "&nbsp;&nbsp;Ativar&nbsp;&nbsp;" }}
+              </button>
+            </td>
+          </tr>
+        </tbody>
+
+        <!-- <tr *ngFor="let permissao of resources">
             <td>{{ permissao.descricao }}</td>
             <td> {{ permissao.url }} </td>
             <td>ROOT</td>
@@ -47,8 +67,8 @@
               </a>
 
             </td>
-          </tr>
-        </tbody>
+          </tr> -->
+        <!-- </tbody> -->
       </table>
     </div>
   </div>
