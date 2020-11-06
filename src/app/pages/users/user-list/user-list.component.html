@@ -1,21 +1,15 @@
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-10">
-    <h2>Lista de Perfils</h2>
-    <ol class="breadcrumb">
-      <li>
-        <a routerLink="">Home</a>
-      </li>
-      <li class="active">
-        <strong>Perfils</strong>
-      </li>
-    </ol>
+    <h2>Lista de Usuários</h2>
+    <app-bread-crumb [items]="[{text: 'Usuários'}]"></app-bread-crumb>
   </div>
 </div>
+
 <div class="wrapper wrapper-content animated fadeInRight">
   <div class="row">
     <div class="col-md">
       <a routerLink="new" class="btn btn-success pull-right" style="margin: 10px;">+ Novo Perfil</a>
-      <h1 class="h2 border-left pl-2">Perfils</h1>
+      <h1 class="h2 border-left pl-2">Usuários</h1>
     </div>
   </div>
 
