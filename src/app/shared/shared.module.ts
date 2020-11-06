@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { BreadCrumbComponent, FormFieldErrorComponent } from './components';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [BreadCrumbComponent, FormFieldErrorComponent],
+  declarations: [],
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   exports: [
     // Módulos
@@ -13,8 +12,6 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
 
     // Components
-    BreadCrumbComponent,
-    FormFieldErrorComponent,
   ],
 })
 export class SharedModule {}

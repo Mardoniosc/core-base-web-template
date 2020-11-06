@@ -1,1 +1,79 @@
-<p>profile-list works!</p>
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+      <h2>Lista de Perfils</h2>
+      <ol class="breadcrumb">
+          <li>
+              <a href="index.html">Home</a>
+          </li>
+          <li>
+              <a>Forms</a>
+          </li>
+          <li class="active">
+              <strong>Basic Form</strong>
+          </li>
+      </ol>
+  </div>
+
+  <nav class="mb-5">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+      <li class="breadcrumb-item active">Categorias</li>
+    </ol>
+  </nav>
+
+  <ul class="nav navbar-top-links navbar-right">
+    <li>
+        <a routerLink="login">
+            <i class="fa fa-sign-out"></i> Sair
+        </a>
+    </li>
+  </ul>
+</div>
+
+<div class="row mb-4">
+  <div class="col-md">
+    <h1 class="h2 border-left pl-2">Categorias</h1>
+  </div>
+  <div class="col-md">
+    <a routerLink="new" class="btn btn-success pull-right">+ Nova categoria</a>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class='table table-striped table-bordered table-hover dataTables-example'>
+    <thead>
+    <tr>
+    <th>Perfil</th>
+    <th>Permissões</th>
+    <th>Ações</th>
+  </tr>
+  </thead>
+    <tbody>
+    <tr>
+    <td>ROOT</td>
+    <td>
+    <div class='tooltip-demo'>
+        <button
+          type='button'
+          data-toggle='tooltip'
+          data-placement='top'
+          style="margin-right: 10px;"
+        > <i class='fa fa-toggle-on'></i>
+
+            Descrição
+        </button>
+  </div>
+</td>
+  <td>
+    <a [routerLink]="[12, 'edit']">
+    <button type='button' class='btn btn-outline btn-success'>
+    <i class='fa fa-edit'>
+
+  </i> Editar Perfil</button>
+  </a>
+  </td>
+</tr>
+
+</tbody>
+</table>
+</div>
