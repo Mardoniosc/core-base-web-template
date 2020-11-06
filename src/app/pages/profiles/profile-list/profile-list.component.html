@@ -30,8 +30,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>ROOT</td>
+          <tr *ngFor="let profile of resources">
+            <td> {{ profile.nome }} </td>
             <td>
               <div class='tooltip-demo'>
                 <button type='button' data-toggle='tooltip' data-placement='top' style="margin-right: 10px;"> <i
@@ -41,7 +41,7 @@
               </div>
             </td>
             <td>
-              <a [routerLink]="[12, 'edit']">
+              <a [routerLink]="[profile.id, 'edit']">
                 <button type='button' class='btn btn-outline btn-success'>
                   <i class='fa fa-edit'>
                   </i> Editar Perfil</button>
