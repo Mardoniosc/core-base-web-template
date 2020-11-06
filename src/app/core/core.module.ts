@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpClientModule } from '@angular/common/http';
+import { ProfilePermitionService } from '../shared';
 
 @NgModule({
   declarations: [],
@@ -14,5 +15,6 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
   ],
   exports: [BrowserModule, BrowserAnimationsModule, HttpClientModule],
+  providers: [ProfilePermitionService],
 })
 export class CoreModule {}

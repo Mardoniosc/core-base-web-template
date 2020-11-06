@@ -126,6 +126,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel>
   }
 
   protected actionForSuccess(resource: T) {
+    toastr.options.progressBar = true;
     toastr.success('Solicitação processada com sucesso!');
 
     const baseComponentPath: string = this.route.snapshot.parent.url[0].path;
@@ -144,9 +145,11 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel>
       this.serverErrorMessages = JSON.parse(err._body).erros;
     }
     if (err.status === 504) {
+      toastr.options.progressBar = true;
       toastr.error('Erro de comunicação com o servidor');
       this.serverErrorMessages = ['Erro 504 - Gateway Timeout'];
     } else {
+      toastr.options.progressBar = true;
       toastr.error('Ocorreu um erro ao processar a sua solicitação!');
       this.serverErrorMessages = [
         'Falha na comunicação com o servidor. Favor tente mais tarde!',

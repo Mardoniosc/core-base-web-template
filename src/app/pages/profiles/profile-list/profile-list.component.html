@@ -27,10 +27,15 @@
             <td> {{ profile.nome }} </td>
             <td>
               <div class='tooltip-demo'>
-                <button type='button' data-toggle='tooltip' data-placement='top' style="margin-right: 10px;"> <i
-                    class='fa fa-toggle-on'></i>
-                  Descrição
-                </button>
+                <ng-container *ngFor="let permissao of permissoes">
+                  <button *ngIf="verificaPermissao(profile.id, permissao.id)" type='button'
+                    class='btn btn-outline btn-{{ pegaStatusAtual(profile.id, permissao.id) }}' data-toggle='tooltip'
+                    data-placement='top' (click)="atualizaStatus(profile.id, permissao.id)" style="margin-right: 10px;">
+                    <i class='fa fa-toggle-on'></i>
+
+                    {{ permissao.descricao }}
+                  </button>
+                </ng-container>
               </div>
             </td>
             <td>

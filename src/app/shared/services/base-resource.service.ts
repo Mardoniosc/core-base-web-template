@@ -35,20 +35,20 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
       );
   }
 
-  create(profile: T): Observable<any> {
+  create(resource: T): Observable<any> {
     return this.http
-      .post(this.apiPath, profile, {
+      .post(this.apiPath, resource, {
         observe: 'response',
         responseType: 'text',
       })
       .pipe(catchError(this.handleError));
   }
 
-  update(profile: T): Observable<T> {
-    const url = `${this.apiPath}/${profile.id}`;
-    return this.http.put(url, profile).pipe(
+  update(resource: T): Observable<T> {
+    const url = `${this.apiPath}/${resource.id}`;
+    return this.http.put(url, resource).pipe(
       catchError(this.handleError),
-      map(() => profile)
+      map(() => resource)
     );
   }
 
@@ -62,11 +62,11 @@ export abstract class BaseResourceService<T extends BaseResourceModel> {
 
   // PRIVATE METHODS
   protected jsonDataToresources(jsonData: any[]): T[] {
-    const profiles: T[] = [];
+    const resources: T[] = [];
     jsonData.forEach((element) =>
-      profiles.push(this.jsonDataToResourceFn(element))
+      resources.push(this.jsonDataToResourceFn(element))
     );
-    return profiles;
+    return resources;
   }
 
   protected jsonDataToresource(jsonData: any[]): T {
